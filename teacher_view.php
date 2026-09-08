@@ -10,17 +10,17 @@
 <body>
     <?php
 
-    use Controller\StudentController;
+    use Controller\TeacherController;
 
-    require_once __DIR__ . '/Controller/StudentController.php';
-    $studentController = new StudentController;
+    require_once __DIR__ . '/Controller/TeacherController.php';
+    $teacherController = new TeacherController;
     if (isset($_GET['class_code'])) {
         $class_code = $_GET['class_code'];
     } else {
         $class_code = null;
     }
 
-    $list = $studentController->getList($class_code);
+    $list = $teacherController->getList($class_code);
 
 
     ?>
@@ -56,9 +56,7 @@
             <div class="feature-layout">
                 <?php for ($i = 0; $i < count($list); $i++) {  ?>
                     <div class="feature-item">
-                        <div><?php echo  $list[$i]->getFullname() ?></div>
-                        <div><?php echo  $list[$i]->getDateOfBirth() ?></div>
-                        <div><?php echo $list[$i]->getClassName() ?></div>
+                        <div><?php echo $list[$i]->getFullname()?></div>
                         <div><?php echo $list[$i]->getGender()?></div>
                     </div>
                 <?php } ?>
