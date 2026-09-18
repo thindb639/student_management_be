@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Entities;
 
-class Teacher {
+class Teacher
+{
 
     public int $id;
 
@@ -17,17 +18,19 @@ class Teacher {
     public int $gender;
 
 
-    public function getGender(): string {
+    public function getGender(): string
+    {
         if ($this->gender == 1) {
             return "nam";
         } else if ($this->gender == 2) {
             return "nu";
         } else {
-        return "chua xac dinh";
+            return "chua xac dinh";
         }
     }
 
-    public function getFullname(): string {
+    public function getFullname(): string
+    {
         return $this->first_name . " " . $this->last_name;
     }
 
@@ -48,4 +51,3 @@ class Teacher {
         $this->address = $address;
     }
 }
-

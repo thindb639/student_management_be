@@ -20,10 +20,17 @@
         $class_code = null;
     }
 
-    $list = $studentController->getList($class_code);
+   
+    if (isset($_GET['search_query'])) {
+        $search_query = $_GET['search_query'];
+    } else {
+        $search_query = null;
+    }
 
-
+    $list = $studentController->getList($class_code, $search_query);
+    // var_dump($search_query);die;
     ?>
+
 
     <header>
         <h1>TÊN WEBSITE</h1>
@@ -59,7 +66,7 @@
                         <div><?php echo  $list[$i]->getFullname() ?></div>
                         <div><?php echo  $list[$i]->getDateOfBirth() ?></div>
                         <div><?php echo $list[$i]->getClassName() ?></div>
-                        <div><?php echo $list[$i]->getGender()?></div>
+                        <div><?php echo $list[$i]->getGender() ?></div>
                     </div>
                 <?php } ?>
 
