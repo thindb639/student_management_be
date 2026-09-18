@@ -22,18 +22,19 @@ class Student
     public int $class_id;
 
     private $class = [
-            ["id" => 1,"name"=> "Tin 1"],
-            ["id" => 2,"name"=> "Tin 2"],
-            ["id" => 3, "name"=> "Tin 3"],
-        ];
-    
+        ["id" => 2, "name" => "Tin 1"],
+        ["id" => 1, "name" => "Tin 2"],
+        ["id" => 3, "name" => "Tin 3"],
+    ];
+
 
     public function getDateOfBirth(): string
     {
         return substr($this->date_of_birth, 5, 10); // cat chuoi
     }
 
-    public function getFullname(): string {
+    public function getFullname(): string
+    {
         return $this->first_name . " " . $this->last_name;
     }
 
@@ -48,18 +49,18 @@ class Student
         }
     }
 
-     public function getClassName(): string
+    public function getClassName(): string
     {
-        $classId = $this->class_id;
-        for ($classId = 0; $classId <= 4; $classId++) {
-            if ($classId == $this->class_id) {
-                return "Tin"." ".$classId; 
-            
-        }    
-    }
+        $class = $this->class;
+        for ($i = 0; $i < count($class); $i++) {
+            if ($this->class_id == $class[$i]["id"]) {
+                return $this->class[$i]["name"];
+            }
+        }
+        return "chưa được xếp lớp";
     }
 
-    
+
 
     public function __construct(
         string $first_name,

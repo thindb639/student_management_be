@@ -58,6 +58,7 @@
                     <div class="feature-item">
                         <div><?php echo $list[$i]->getFullname()?></div>
                         <div><?php echo $list[$i]->getGender()?></div>
+                        <div><?php echo $list[$i]->first_name?></div>
                     </div>
                 <?php } ?>
 
