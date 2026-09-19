@@ -17,6 +17,8 @@ class Teacher
 
     public int $gender;
 
+    public int $class_id;
+
 
     public function getGender(): string
     {
@@ -42,6 +44,7 @@ class Teacher
         string $phone_number,
         int $gender,
         string $address,
+        int $class_id,
     ) {
         $this->id = $id;
         $this->first_name = $first_name;
@@ -49,5 +52,6 @@ class Teacher
         $this->phone_number = $phone_number;
         $this->gender = $gender;
         $this->address = $address;
+        $this->class_id = $class_id;    
     }
 }

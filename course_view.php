@@ -10,27 +10,21 @@
 <body>
     <?php
 
-    use Controller\StudentController;
+    use Controller\CourseController;
 
-    require_once __DIR__ . '/Controller/StudentController.php';
-    $studentController = new StudentController;
+    require_once __DIR__ . '/Controller/CourseController.php';
+    $CourseController = new CourseController;
     if (isset($_GET['class_code'])) {
         $class_code = $_GET['class_code'];
     } else {
         $class_code = null;
     }
 
-   
-    if (isset($_GET['search_query'])) {
-        $search_query = $_GET['search_query'];
-    } else {
-        $search_query = null;
-    }
+    $list = $CourseController->getList($class_code);
 
-    $list = $studentController->getList($class_code, $search_query);
-    // var_dump($search_query);die;
+
     ?>
-
+    
 
     <header>
         <h1>TÊN WEBSITE</h1>
@@ -63,11 +57,9 @@
             <div class="feature-layout">
                 <?php for ($i = 0; $i < count($list); $i++) {  ?>
                     <div class="feature-item">
-                        <div><?php echo  $list[$i]->getFullname() ?></div>
-                        <div><?php echo  $list[$i]->getDateOfBirth() ?></div>
-                        <div><?php echo $list[$i]->getClassName()?></div>-<div><?php echo $list[$i]->getTeacherName() ?></div>
-                        <div><?php echo $list[$i]->getGender() ?></div>
-                       
+                        <div><?php echo $list[$i]->name ?></div>
+                        <div><?php echo $list[$i]->getTeachName() ?></div>
+
                     </div>
                 <?php } ?>
 
