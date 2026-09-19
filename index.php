@@ -65,8 +65,9 @@
                     <div class="feature-item">
                         <div><?php echo  $list[$i]->getFullname() ?></div>
                         <div><?php echo  $list[$i]->getDateOfBirth() ?></div>
-                        <div><?php echo $list[$i]->getClassName() ?></div>
+                        <div><?php echo $list[$i]->getClassName()?></div>-<div><?php echo $list[$i]->getTeacherName() ?></div>
                         <div><?php echo $list[$i]->getGender() ?></div>
+                       
                     </div>
                 <?php } ?>
 

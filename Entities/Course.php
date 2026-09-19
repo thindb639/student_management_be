@@ -2,8 +2,11 @@
 
 namespace Entities;
 
+ 
+
 class Course
 {
+    public int $id;
     public string $code;
 
     public string $name;
@@ -29,18 +32,17 @@ class Course
      }
         
         
-    } 
-        
-
-
+    }
     
 
     public function __construct(
+        int $id,
         string $code,
         string $name,
         string $teacher_id,
         int $credit,
     ) {
+        $this->id = $id;
         $this->code = $code;
         $this->name = $name;
         $this->teacher_id = $teacher_id;
