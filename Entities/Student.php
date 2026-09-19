@@ -6,9 +6,6 @@ use Entities\Course;
 
 require_once 'Entities/Course.php';
 
-use Entities\Teacher;
-
-require_once  'Entities/Teacher.php';
 
 class Student
 {
@@ -67,20 +64,16 @@ class Student
     }
 
     public function getTeacherName(): string
-    {
-        for ($i = 0; $i < count($this->class); $i++) {
-            if ($this->class_id == $this->class[$i]->id) {
-
-                for ($j = 0; $j < count($this->teacher); $j++) {
-                    if ($this->class[$i]->teacher_id == $this->teacher[$j]->id) {
-                        return $this->teacher[$j]->getFullname();
-                    }
-                }
-            }
+{
+    for ($i = 0; $i < count($this->class); $i++) {
+        if ($this->class_id == $this->class[$i]->id) {
+            return $this->class[$i]->getTeachName();
         }
-
-        return "Chưa có giáo viên";
     }
+
+    return "Chưa có giáo viên";
+}
+
 
 
     public function __construct(
@@ -108,10 +101,6 @@ class Student
             new Course(3, "A03", "Lap trinh co ban 3", 1, 3),
         ];
 
-        $this->teacher = [
-            new Teacher(1, "Minh", "Chau", "012345678", 2, "Ha Noi", 2),
-            new Teacher(2, "Luong", "Quan", "09876544", 1, "Ha Noi", 1),
-            new Teacher(3, "Luong", "Quan", "09876544", 3, "Ha Noi", 3),
-        ];
+        
     }
 }
