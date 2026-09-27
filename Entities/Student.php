@@ -2,6 +2,11 @@
 
 namespace Entities;
 
+use Entities\Course;
+
+require_once 'Entities/Course.php';
+
+
 class Student
 {
     public int $id;
@@ -21,11 +26,9 @@ class Student
 
     public int $class_id;
 
-    private $class = [
-        ["id" => 2, "name" => "Tin 1"],
-        ["id" => 1, "name" => "Tin 2"],
-        ["id" => 3, "name" => "Tin 3"],
-    ];
+    public array $class;
+
+    public array $teacher;
 
 
     public function getDateOfBirth(): string
@@ -53,12 +56,23 @@ class Student
     {
         $class = $this->class;
         for ($i = 0; $i < count($class); $i++) {
-            if ($this->class_id == $class[$i]["id"]) {
-                return $this->class[$i]["name"];
+            if ($this->class_id == $class[$i]->id) {
+                return $this->class[$i]->name;
             }
         }
         return "chưa được xếp lớp";
     }
+
+    public function getTeacherName(): string
+{
+    for ($i = 0; $i < count($this->class); $i++) {
+        if ($this->class_id == $this->class[$i]->id) {
+            return $this->class[$i]->getTeachName();
+        }
+    }
+
+    return "Chưa có giáo viên";
+}
 
 
 
@@ -70,7 +84,7 @@ class Student
         int $gender,
         string $address,
         int $status,
-        int $class_id
+        int $class_id,
     ) {
         $this->first_name = $first_name;
         $this->last_name = $last_name;
@@ -80,5 +94,13 @@ class Student
         $this->address = $address;
         $this->status = $status;
         $this->class_id = $class_id;
+
+        $this->class = [
+            new Course(1, "A01", "Lap trinh co ban 1", 3, 3),
+            new Course(2, "A02", "Lap trinh co ban 2", 2, 4),
+            new Course(3, "A03", "Lap trinh co ban 3", 1, 3),
+        ];
+
+        
     }
 }

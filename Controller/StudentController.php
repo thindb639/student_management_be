@@ -7,6 +7,7 @@ use Entities\Student;
 require_once 'Entities/Student.php';
 
 
+
 class StudentController
 {
     public function getList($code, $name = null)
@@ -33,4 +34,6 @@ class StudentController
     }
 
     public function filter($class) {}
-}
+
+    }
+
