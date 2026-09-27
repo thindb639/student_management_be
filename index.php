@@ -9,6 +9,42 @@
 
 <body>
     <?php
+    
+    if (isset($_GET['search_query'])) {
+        $search_query = $_GET['search_query'];
+    } else {
+        $search_query = null;
+    }
+
+    if (isset($_GET['class_id'])) {
+        $class_id = $_GET['class_id'];
+    } else {
+        $class_id = null;
+    }
+
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "student_ms";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = 'SELECT * FROM student';
+    if ($search_query !== null and $class_id != null) {
+        $sql .= ' where first_name like "%' . $search_query . '%" and class_id = ' . $class_id;
+    }
+    //var_dump($sql);die;
+    // Execute the SQL query
+    $result = mysqli_query($conn, $sql);
+
+    ?>
+    <?php
 
     use Controller\StudentController;
 
@@ -20,12 +56,8 @@
         $class_code = null;
     }
 
-   
-    if (isset($_GET['search_query'])) {
-        $search_query = $_GET['search_query'];
-    } else {
-        $search_query = null;
-    }
+
+    // var_dump($search_query);die;
 
     $list = $studentController->getList($class_code, $search_query);
     // var_dump($search_query);die;
@@ -61,13 +93,12 @@
             <p>Đây là phần nội dung chính của trang, nằm giữa sidebar trái và sidebar phải.</p>
 
             <div class="feature-layout">
-                <?php for ($i = 0; $i < count($list); $i++) {  ?>
+                <?php while ($row = mysqli_fetch_assoc($result)) {  ?>
                     <div class="feature-item">
-                        <div><?php echo  $list[$i]->getFullname() ?></div>
-                        <div><?php echo  $list[$i]->getDateOfBirth() ?></div>
-                        <div><?php echo $list[$i]->getClassName()?></div>-<div><?php echo $list[$i]->getTeacherName() ?></div>
-                        <div><?php echo $list[$i]->getGender() ?></div>
-                       
+                        <div><?php echo $row["id"] ?></div>
+                        <div><?php echo $row["first_name"] ?></div>-<div><?php echo $row["last_name"] ?></div>
+                        <div><?php echo $row["gender"] ?></div>
+
                     </div>
                 <?php } ?>
 
@@ -89,7 +120,6 @@
     <footer>
         © 2026 Tên Website. All rights reserved.
     </footer>
-
-</body>
+    <?php $conn = null; ?>
 
 </html>
